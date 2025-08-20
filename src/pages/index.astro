@@ -1,0 +1,65 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Sidebar from "../components/Sidebar.tsx";
+import Section from "../components/Section.tsx";
+import FilterPills from "../components/FilterPills.tsx";
+import PortofolioGrid from "../components/PortofolioGrid.tsx";
+---
+
+<BaseLayout title="Home — Rizqirakun">
+  <div class="grid grid-cols-1 lg:grid-cols-[320px_1fr] gap-8">
+    <Sidebar client:idle />
+
+    <div class="space-y-16">
+      <Section
+        title="Hello, I’m Your Name"
+        subtitle="Frontend Developer & Designer"
+      >
+        <div class="card p-6">
+          <p>
+            I craft accessible UIs and build fast websites. This site is an
+            Astro + React islands rewrite of Rizqirakun.
+          </p>
+          <div class="mt-4 flex gap-3">
+            <a href="/portfolio" class="btn">View Portfolio</a>
+            <a href="/contact" class="btn">Contact</a>
+          </div>
+        </div>
+      </Section>
+
+      <Section id="skills" title="Skills" subtitle="What I use often">
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {
+            ["Astro", "React", "TypeScript", "Tailwind", "Node.js", "AWS"].map(
+              (s) => (
+                <div class="card p-4" style="min-height: 80px;">
+                  {s}
+                </div>
+              )
+            )
+          }
+        </div>
+      </Section>
+
+      <Section id="portfolio" title="Selected Work" subtitle="Filter by type">
+        <FilterPills
+          client:load
+          onChange={(v) => {
+            const ev = new CustomEvent("set-filter", { detail: v });
+            document.dispatchEvent(ev);
+          }}
+        />
+        <PortofolioGrid client:load />
+        <script>
+          {
+            `
+document.addEventListener('set-filter', (e) => {
+// No-op: the island reads its own state. This shows how you could broadcast.
+});
+`;
+          }
+        </script>
+      </Section>
+    </div>
+  </div>
+</BaseLayout>

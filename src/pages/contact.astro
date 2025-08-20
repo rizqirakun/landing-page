@@ -1,0 +1,11 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Section from "../components/Section.tsx";
+import ContactForm from "../components/ContactForm.tsx";
+---
+
+<BaseLayout title="Contact — Rizqirakun">
+  <Section title="Get in touch" subtitle="I usually reply within a day.">
+    <ContactForm client:load />
+  </Section>
+</BaseLayout>

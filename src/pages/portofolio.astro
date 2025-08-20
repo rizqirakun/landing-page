@@ -1,0 +1,13 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Section from "../components/Section.tsx";
+import FilterPills from "../components/FilterPills.tsx";
+import PortofolioGrid from "../components/PortofolioGrid.tsx";
+---
+
+<BaseLayout title="Portfolio — Rizqirakun">
+  <Section title="Projects" subtitle="Explore by category">
+    <FilterPills client:load />
+    <PortofolioGrid client:load />
+  </Section>
+</BaseLayout>
