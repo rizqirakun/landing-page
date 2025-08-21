@@ -4,11 +4,13 @@ import Sidebar from "../components/Sidebar.tsx";
 import Section from "../components/Section.tsx";
 import FilterPills from "../components/FilterPills.tsx";
 import PortofolioGrid from "../components/PortofolioGrid.tsx";
+import IonHome from "virtual:icons/ion/home";
 ---
 
 <BaseLayout title="Home — Rizqirakun">
   <div class="grid grid-cols-1 lg:grid-cols-[320px_1fr] gap-8">
     <Sidebar client:idle />
+    <!-- <IonHome client:load /> -->
 
     <div class="space-y-16">
       <Section
